@@ -4,7 +4,7 @@
 
 var _taskHandler = function(task, next) {
   FS.debug && console.log("uploading chunk " + task.chunk + ", bytes " + task.start + " to " + Math.min(task.end, task.fileObj.size) + " of " + task.fileObj.size);
-  task.fileObj.getBinary(task.start, task.end, function(err, data) {
+  task.fileObj.getBinary(task.start, task.end, function gotBindaryCallback(err, data) {
     if (err) {
       next(new Meteor.Error(err.error, err.message));
     } else {
@@ -14,7 +14,7 @@ var _taskHandler = function(task, next) {
               [task.fileObj, data, task.start],
               { // We pass in options
                 // wait should be false if Meteor issue is fixed: https://github.com/meteor/meteor/issues/1826
-                wait: true, // Dont queue this on the client
+                wait: false, // Dont queue this on the client
                 onResultReceived: function(err, result) {
                   // This callback is called as soon as the data is recieved
                   var e = new Date();
@@ -29,7 +29,6 @@ var _taskHandler = function(task, next) {
               });
     }
   });
-
 };
 
 var _errorHandler = function(data, addTask) {
@@ -52,12 +51,13 @@ UploadTransferQueue = function(options) {
   var self = new PowerQueue({
     name: 'UploadTransferQueue',
     // spinalQueue: ReactiveList,
-    maxProcessing: 5,
+    maxProcessing: 1,
     maxFailures: 5,
     jumpOnFailure: true,
     autostart: true,
     isPaused: false,
-    filo: false
+    filo: false,
+    debug: true
   });
 
   // Create a seperate ddp connection or use the passed in connection
@@ -127,12 +127,12 @@ UploadTransferQueue = function(options) {
 
       // Create a sub queue
       var chunkQueue = new PowerQueue({
-        onEnded: function () {
+        onEnded: function oneChunkQueueEnded() {
           // Remove from list of files being uploaded
           self.files[fileObj.collectionName][fileObj._id] = false;
         },
         spinalQueue: ReactiveList,
-        maxProcessing: 5,
+        maxProcessing: 1,
         maxFailures: 5,
         jumpOnFailure: true,
         autostart: true,
