@@ -4,7 +4,7 @@ Package.describe({
 
 Package.on_use(function(api) {
   api.use(['deps', 'underscore', 'check', 'livedata', 'mongo-livedata',
-    'ejson', 'power-queue']);
+    'ejson', 'power-queue', 'reactive-list']);
 
   api.use(['cfs-base-package']);
 

@@ -13,6 +13,10 @@
     "power-queue": {
       "git": "https://github.com/CollectionFS/Meteor-power-queue.git",
       "branch": "master"
+    },
+    "reactive-list": {
+      "git": "https://github.com/CollectionFS/Meteor-reactive-list.git",
+      "branch": "master"
     }
   }  
 }
