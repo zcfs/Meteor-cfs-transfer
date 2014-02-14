@@ -147,7 +147,7 @@ UploadTransferQueue = function(options) {
       chunkQueue.errorHandler = _errorHandler;
 
       // Rig methodName
-      var methodName = fileObj.collection.methodName + '/put';
+      var methodName = FS.AccessPoint.DDP.put;
 
       // Set flag that this file is being transfered
       self.files[fileObj.collectionName] = self.files[fileObj.collectionName] || {};
