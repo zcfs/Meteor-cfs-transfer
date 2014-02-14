@@ -2,6 +2,12 @@
  * Upload Transfer Queue
  */
 
+/**
+ * @private
+ * @param {Object} task
+ * @param {Function} next
+ * @return {undefined}
+ */
 var _taskHandler = function(task, next) {
   FS.debug && console.log("uploading chunk " + task.chunk + ", bytes " + task.start + " to " + Math.min(task.end, task.fileObj.size) + " of " + task.fileObj.size);
   task.fileObj.getBinary(task.start, task.end, function gotBindaryCallback(err, data) {
@@ -31,6 +37,12 @@ var _taskHandler = function(task, next) {
   });
 };
 
+/**
+ * @private
+ * @param {Object} data
+ * @param {Function} addTask
+ * @return {undefined}
+ */
 var _errorHandler = function(data, addTask) {
   // What to do if file upload failes - we could check connection and pause the
   // queue?
@@ -39,9 +51,9 @@ var _errorHandler = function(data, addTask) {
 
 /** @method UploadTransferQueue
  * @namespace UploadTransferQueue
- * @private
- * @param {object} [options]
- * @param {object} [options.connection=new Meteor.connection]
+ * @constructor
+ * @param {Object} [options]
+ * @param {Object} [options.connection=a separate connection to the default Meteor DDP URL] The connection to use
  */
 UploadTransferQueue = function(options) {
   // Rig options

@@ -5,10 +5,16 @@
 var chunkSize = 0.5 * 1024 * 1024; // 0.5MB; can be changed
 var cachedChunks = {};
 
-DownloadTransferQueue = function(opts) {
+/** @method UploadTransferQueue
+ * @namespace UploadTransferQueue
+ * @constructor
+ * @param {Object} [options]
+ * @param {Object} [options.connection=a separate connection to the default Meteor DDP URL] The connection to use
+ */
+DownloadTransferQueue = function(options) {
   var self = this, name = 'DownloadTransferQueue';
-  opts = opts || {};
-  self.connection = opts.connection || DDP.connect(Meteor.connection._stream.rawUrl);
+  options = options || {};
+  self.connection = options.connection || DDP.connect(Meteor.connection._stream.rawUrl);
 
   // Tie login for this connection to login for the main connection
   FS.Utility.connectionLogin(self.connection);
@@ -29,12 +35,12 @@ DownloadTransferQueue = function(opts) {
   // Currently this won't work because we're not caching to a persistent client
   // store.
   //
-//  Meteor.startup(function() {
-//    // Resume unfinished downloads when clients restart
-//    self.collection.find({data: null}).forEach(function(doc) {
-//      downloadChunk(self, doc.fo, doc.storeName, doc.start);
-//    });
-//  });
+  //  Meteor.startup(function() {
+  //    // Resume unfinished downloads when clients restart
+  //    self.collection.find({data: null}).forEach(function(doc) {
+  //      downloadChunk(self, doc.fo, doc.storeName, doc.start);
+  //    });
+  //  });
 };
 
 /**
@@ -124,11 +130,11 @@ DownloadTransferQueue.prototype.cancel = function() {
 };
 
 /**
- * Determines whether we are currently downloading this file from this store.
- *
  * @param {FS.File} fsFile
  * @param {String} storeName
  * @returns {Boolean} Are we currently downloading this file from this store?
+ * 
+ * Determines whether we are currently downloading this file from this store.
  */
 DownloadTransferQueue.prototype.isDownloadingFile = function(fsFile, storeName) {
   var self = this;
@@ -138,8 +144,16 @@ DownloadTransferQueue.prototype.isDownloadingFile = function(fsFile, storeName) 
   return !!self.collection.findOne({fileId: fsFile._id, collectionName: fsFile.collectionName, storeName: storeName});
 };
 
-// Private
 
+/**
+ * @private
+ * @param {Meteor.Collection} col
+ * @param {FS.File} fsFile
+ * @param {String} storeName
+ * @param {Number} start
+ * @param {Function} callback
+ * @returns {undefined}
+ */
 var cacheDownload = function(col, fsFile, storeName, start, callback) {
   if (col.findOne({fileId: fsFile._id, collectionName: fsFile.collectionName, storeName: storeName, start: start})) {
     // If already cached, don't do it again
@@ -149,13 +163,30 @@ var cacheDownload = function(col, fsFile, storeName, start, callback) {
   }
 };
 
+/**
+ * @private
+ * @param {Meteor.Collection} col
+ * @param {FS.File} fsFile
+ * @param {String} storeName
+ * @param {Function} callback
+ * @returns {undefined}
+ */
 var unCacheDownload = function(col, fsFile, storeName, callback) {
   delete cachedChunks[fsFile.collectionName][fsFile._id][storeName];
   col.remove({fileId: fsFile._id, collectionName: fsFile.collectionName, storeName: storeName}, callback);
 };
 
-// Downloading is a bit different from uploading. We cache data as it comes back
-// rather than before making the method calls.
+/**
+ * @private
+ * @param {TransferQueue} tQueue
+ * @param {FS.File} fsFile
+ * @param {String} storeName
+ * @param {Number} start
+ * @returns {undefined}
+ * 
+ * Downloading is a bit different from uploading. We cache data as it comes back
+ * rather than before making the method calls.
+ */
 var downloadChunk = function(tQueue, fsFile, storeName, start) {
   if (fsFile.isMounted()) {
 
@@ -183,6 +214,16 @@ var downloadChunk = function(tQueue, fsFile, storeName, start) {
 
 };
 
+/**
+ * @private
+ * @param {Meteor.Collection} col
+ * @param {FS.File} fsFile
+ * @param {String} storeName
+ * @param {Number} start
+ * @param {Uint8Array} data
+ * @param {Function} callback
+ * @returns {undefined}
+ */
 var addDownloadedData = function(col, fsFile, storeName, start, data, callback) {
   col.update({fileId: fsFile._id, collectionName: fsFile.collectionName, storeName: storeName, start: start}, {$set: {data: true}}, function(err) {
     if (err) {
