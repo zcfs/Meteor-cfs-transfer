@@ -2,6 +2,15 @@
  * Upload Transfer Queue
  */
 
+// XXX: we dont have to use a subqueue - a task can do next(null) to be rerun later
+// It could be an optimization if needed.
+// XXX: we should make the queue connection aware - in case of failures and no
+// connection it should pause the queue - and start again when online again.
+// XXX: we should have a handle to pause or cancel the file upload
+// XXX: we should have a handle to the file when uploading
+// XXX: we should refactor this package into ddp transfer making the tranfer
+// package the general mechanism for chunk uploading - dispite protocol.
+
 /**
  * @private
  * @param {Object} task
