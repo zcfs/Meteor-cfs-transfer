@@ -10,7 +10,7 @@
  */
 var _taskHandler = function(task, next) {
   FS.debug && console.log("uploading chunk " + task.chunk + ", bytes " + task.start + " to " + Math.min(task.end, task.fileObj.size) + " of " + task.fileObj.size);
-  task.fileObj.getBinary(task.start, task.end, function gotBindaryCallback(err, data) {
+  task.fileObj.getBinary(task.start, task.end, function gotBinaryCallback(err, data) {
     if (err) {
       next(new Meteor.Error(err.error, err.message));
     } else {
