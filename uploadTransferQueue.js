@@ -25,7 +25,9 @@ var _taskHandler = function(task, next) {
     } else {
       var b = new Date();
 
-      task.connection.apply(task.methodName,
+      //task.connection.apply(task.methodName,
+      //XXX using Meteor.apply for now because login isn't working
+      Meteor.apply(task.methodName,
               [task.fileObj, data, task.start],
               { // We pass in options
                 // wait should be false if Meteor issue is fixed: https://github.com/meteor/meteor/issues/1826

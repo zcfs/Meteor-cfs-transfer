@@ -193,7 +193,9 @@ var downloadChunk = function(tQueue, fsFile, storeName, start) {
     cacheDownload(tQueue.collection, fsFile, storeName, start, function(err) {
       tQueue.queue.add(function(complete) {
         FS.debug && console.log("downloading bytes starting from " + start);
-        tQueue.connection.apply(FS.AccessPoint.DDP.get,
+        //tQueue.connection.apply(FS.AccessPoint.DDP.get,
+        //XXX using Meteor.apply for now because login isn't working
+        Meteor.apply(FS.AccessPoint.DDP.get,
                 [fsFile, storeName, start, start + chunkSize],
                 {
                   onResultReceived: function(err, data) {
