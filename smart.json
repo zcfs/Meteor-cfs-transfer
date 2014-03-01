@@ -2,7 +2,7 @@
 	"name": "cfs-transfer",
 	"description": "CollectionFS, ddp upload and download transfer",
 	"homepage": "https://github.com/CollectionFS/Meteor-cfs-transfer",
-	"author": "CollectionFS core @aldeed & @raix",
+	"author": "Eric Dobbertin (https://github.com/aldeed), Morten Henriksen (https://github.com/raix)",
 	"version": "0.0.3",
 	"git": "https://github.com/CollectionFS/Meteor-cfs-transfer.git",
 	"packages": {
