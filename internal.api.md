@@ -185,105 +185,7 @@ __Arguments__
 __Returns__  *{undefined}*
 
 
-> ```var addDownloadedData = function(col, fsFile, storeName, start, data, callback) { ...``` [downloadTransferQueue.js:227](downloadTransferQueue.js#L227)
-
--
-
-
----
-> File: ["uploadTransferQueue.js"](uploadTransferQueue.js)
-> Where: {client}
-
--
-
-#### <a name="_taskHandler"></a>_taskHandler(task, next)&nbsp;&nbsp;<sub><i>Client</i></sub> ####
--
-*This method is private*
-
-__Arguments__
-
-* __task__ *{Object}*  
-* __next__ *{Function}*  
-
--
-
-__Returns__  *{undefined}*
-
-
-> ```var _taskHandler = function(task, next) { ...``` [uploadTransferQueue.js:11](uploadTransferQueue.js#L11)
-
--
-
-#### <a name="_errorHandler"></a>_errorHandler(data, addTask)&nbsp;&nbsp;<sub><i>Client</i></sub> ####
--
-*This method is private*
-
-__Arguments__
-
-* __data__ *{Object}*  
-* __addTask__ *{Function}*  
-
--
-
-__Returns__  *{undefined}*
-
-
-> ```var _errorHandler = function(data, addTask) { ...``` [uploadTransferQueue.js:46](uploadTransferQueue.js#L46)
-
--
-
-#### <a name="UploadTransferQueue"></a>new UploadTransferQueue([options])&nbsp;&nbsp;<sub><i>Client</i></sub> ####
--
-
-__Arguments__
-
-* __options__ *{Object}*    (Optional)
-    - __connection__ *{Object}*    (Default = a separate connection to the default Meteor DDP URL)
-The connection to use
-
--
-
-> ```UploadTransferQueue = function(options) { ...``` [uploadTransferQueue.js:58](uploadTransferQueue.js#L58)
-
--
-
-#### <a name="UploadTransferQueue.resumeUploadingFile"></a>*uploadtransferqueue*.resumeUploadingFile(File)&nbsp;&nbsp;<sub><i>Client</i></sub> ####
--
-*This method __resumeUploadingFile__ is defined in `UploadTransferQueue`*
-
-__Arguments__
-
-* __File__ *{[FS.File](#FS.File)}*  
-to resume uploading
-
--
-
-__TODO__
-```
-* Not sure if this is the best way to handle resumes
-```
-
-> ```self.resumeUploadingFile = function (fileObj) { ...``` [uploadTransferQueue.js:93](uploadTransferQueue.js#L93)
-
--
-
-#### <a name="UploadTransferQueue.uploadFile"></a>*uploadtransferqueue*.uploadFile(File)&nbsp;&nbsp;<sub><i>Client</i></sub> ####
--
-*This method __uploadFile__ is defined in `UploadTransferQueue`*
-
-__Arguments__
-
-* __File__ *{[FS.File](#FS.File)}*  
-to upload
-
--
-
-__TODO__
-```
-* Check that a file can only be added once - maybe a visual helper on the FS.File?
-```
-
-> ```self.uploadFile = function(fileObj) { ...``` [uploadTransferQueue.js:113](uploadTransferQueue.js#L113)
+> ```var addDownloadedData = function(col, fsFile, storeName, start, data, callback) { ...``` [downloadTransferQueue.js:229](downloadTransferQueue.js#L229)
 
 -
 
@@ -294,7 +196,7 @@ __TODO__
 
 -
 
-#### <a name="FS.downloadQueue"></a>*fs*.downloadQueue DownloadTransferQueue&nbsp;&nbsp;<sub><i>Client</i></sub> ####
+#### <a name="FS.downloadQueue"></a>FS.downloadQueue DownloadTransferQueue&nbsp;&nbsp;<sub><i>Client</i></sub> ####
 -
 *This property __downloadQueue__ is defined in `FS`*
 
@@ -302,16 +204,5 @@ __TODO__
 There is a single downloads transfer queue per client (not per CFS)
 
 > ```FS.downloadQueue = new DownloadTransferQueue();``` [transfer.js:7](transfer.js#L7)
-
--
-
-#### <a name="FS.uploadQueue"></a>*fs*.uploadQueue UploadTransferQueue&nbsp;&nbsp;<sub><i>Client</i></sub> ####
--
-*This property __uploadQueue__ is defined in `FS`*
-
-
-There is a single uploads transfer queue per client (not per CFS)
-
-> ```FS.uploadQueue = new UploadTransferQueue();``` [transfer.js:15](transfer.js#L15)
 
 -
