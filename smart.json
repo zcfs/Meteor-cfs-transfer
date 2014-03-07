@@ -1,6 +1,6 @@
 {
 	"name": "cfs-transfer",
-	"description": "CollectionFS, ddp upload and download transfer",
+	"description": "CollectionFS, client transfer queue for uploads",
 	"homepage": "https://github.com/CollectionFS/Meteor-cfs-transfer",
 	"author": "CollectionFS core @aldeed & @raix",
 	"version": "0.0.6",

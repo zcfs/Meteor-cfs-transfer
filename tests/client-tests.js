@@ -6,11 +6,6 @@ Tinytest.add('cfs-transfer - client - test environment', function(test) {
   test.isTrue(typeof FS.Collection !== 'undefined', 'test environment not initialized FS.Collection');
 });
 
-/*
- * TODO test both transfer queues
- */
-
-
 //Test API:
 //test.isFalse(v, msg)
 //test.isTrue(v, msg)

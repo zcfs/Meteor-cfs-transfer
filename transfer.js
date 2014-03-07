@@ -1,7 +1,4 @@
-/**
- * @namespace FS
- * @type DownloadTransferQueue
- * 
- * There is a single downloads transfer queue per client (not per CFS)
+/*
+ * TODO refactor this package as an abstraction of upload chunk handling that
+ * both http and ddp uploads and any other upload packages can use
  */
-FS.downloadQueue = new DownloadTransferQueue();

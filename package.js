@@ -1,5 +1,6 @@
 Package.describe({
-  summary: 'CollectionFS, ddp client-side upload and download transfer'
+  name: 'cfs-transfer',
+  summary: 'CollectionFS, client transfer queue for uploads'
 });
 
 Package.on_use(function(api) {
@@ -9,7 +10,6 @@ Package.on_use(function(api) {
   api.use(['cfs-base-package']);
 
   api.add_files([
-    'downloadTransferQueue.js',
     'transfer.js'
   ], 'client');
 
