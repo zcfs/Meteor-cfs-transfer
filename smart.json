@@ -3,7 +3,7 @@
 	"description": "CollectionFS, client transfer queue for uploads",
 	"homepage": "https://github.com/CollectionFS/Meteor-cfs-transfer",
 	"author": "CollectionFS core @aldeed & @raix",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"git": "https://github.com/CollectionFS/Meteor-cfs-transfer.git",
 	"packages": {
 		"cfs-base-package": {
