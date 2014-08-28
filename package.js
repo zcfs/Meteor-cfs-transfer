@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'cfs-transfer',
+  version: '0.0.0',
   summary: 'CollectionFS, client transfer queue for uploads'
 });
 
