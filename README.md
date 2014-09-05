@@ -1,4 +1,4 @@
-cfs-transfer
+cfs:transfer
 =========================
 
 TODO refactor this package as an abstraction of upload chunk handling that
