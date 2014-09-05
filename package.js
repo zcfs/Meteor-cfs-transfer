@@ -1,6 +1,6 @@
 Package.describe({
   name: 'cfs:transfer',
-  version: '0.0.0',
+  version: '0.0.1',
   summary: 'CollectionFS, client transfer queue for uploads'
 });
 
@@ -14,7 +14,7 @@ Package.on_use(function(api) {
     'livedata',
     'mongo-livedata',
     'ejson',
-    'cfs:power-queue@0.0.0',
+    'cfs:power-queue@0.0.1',
     'cfs:reactive-list@0.0.0'
   ]);
 
