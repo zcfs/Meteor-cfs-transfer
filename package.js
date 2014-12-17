@@ -15,11 +15,11 @@ Package.onUse(function(api) {
     'livedata',
     'mongo-livedata',
     'ejson',
-    'cfs:power-queue@0.9.10',
-    'cfs:reactive-list@0.0.8'
+    'cfs:power-queue@0.9.11',
+    'cfs:reactive-list@0.0.9'
   ]);
 
-  api.use(['cfs:base-package@0.0.26']);
+  api.use(['cfs:base-package@0.0.27']);
 
   api.addFiles([
     'transfer.js'
