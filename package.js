@@ -1,6 +1,6 @@
 Package.describe({
   name: 'cfs:transfer',
-  version: '0.0.15',
+  version: '0.0.16',
   summary: 'CollectionFS, client transfer queue for uploads',
   git: 'https://github.com/CollectionFS/Meteor-cfs-transfer.git'
 });
