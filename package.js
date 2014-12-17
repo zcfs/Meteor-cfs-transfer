@@ -1,11 +1,12 @@
 Package.describe({
   name: 'cfs:transfer',
-  version: '0.0.1',
-  summary: 'CollectionFS, client transfer queue for uploads'
+  version: '0.0.14',
+  summary: 'CollectionFS, client transfer queue for uploads',
+  git: 'https://github.com/CollectionFS/Meteor-cfs-transfer.git'
 });
 
-Package.on_use(function(api) {
-  api.versionsFrom('METEOR@0.9.1');
+Package.onUse(function(api) {
+  api.versionsFrom('1.0');
 
   api.use([
     'deps',
@@ -15,12 +16,12 @@ Package.on_use(function(api) {
     'mongo-livedata',
     'ejson',
     'cfs:power-queue@0.0.1',
-    'cfs:reactive-list@0.0.0'
+    'cfs:reactive-list@0.0.8'
   ]);
 
-  api.use(['cfs:base-package@0.0.0']);
+  api.use(['cfs:base-package@0.0.26']);
 
-  api.add_files([
+  api.addFiles([
     'transfer.js'
   ], 'client');
 
