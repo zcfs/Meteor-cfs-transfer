@@ -15,7 +15,7 @@ Package.onUse(function(api) {
     'livedata',
     'mongo-livedata',
     'ejson',
-    'cfs:power-queue@0.0.1',
+    'cfs:power-queue@0.9.10',
     'cfs:reactive-list@0.0.8'
   ]);
 
