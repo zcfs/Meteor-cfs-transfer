@@ -1,8 +1,8 @@
 Package.describe({
-  name: 'cfs:transfer',
+  name: 'zcfs:transfer',
   version: '0.0.16',
   summary: 'CollectionFS, client transfer queue for uploads',
-  git: 'https://github.com/CollectionFS/Meteor-cfs-transfer.git'
+  git: 'https://github.com/zcfs/Meteor-cfs-transfer.git'
 });
 
 Package.onUse(function(api) {
@@ -15,11 +15,11 @@ Package.onUse(function(api) {
     'livedata',
     'mongo-livedata',
     'ejson',
-    'cfs:power-queue@0.9.11',
-    'cfs:reactive-list@0.0.9'
+    'zcfs:power-queue@0.9.11',
+    'zcfs:reactive-list@0.0.9'
   ]);
 
-  api.use(['cfs:base-package@0.0.27']);
+  api.use(['zcfs:base-package@0.0.27']);
 
   api.addFiles([
     'transfer.js'

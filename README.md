@@ -1,4 +1,4 @@
-cfs:transfer
+zcfs:transfer
 =========================
 
 ~~Looking for maintainers - please reach out!~~
